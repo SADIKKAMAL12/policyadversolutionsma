@@ -1,8 +1,7 @@
-"use client"
-
 import { useState } from "react"
 import { ChevronDown, Copy, Check } from "lucide-react"
 import type { PaymentMethod } from "../types"
+import placeholderLogo from "../assets/logos/placeholder.svg"
 
 interface PaymentMethodCardProps {
   method: PaymentMethod
@@ -37,7 +36,7 @@ export default function PaymentMethodCard({ method }: PaymentMethodCardProps) {
       >
         <div className="w-20 h-20 rounded-2xl overflow-hidden flex items-center justify-center">
           <img
-            src={method.logo || "/placeholder.svg"}
+            src={method.logo || placeholderLogo}
             alt={`${method.name} logo`}
             className="w-full h-full object-cover"
           />

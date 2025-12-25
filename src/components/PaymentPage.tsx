@@ -19,7 +19,7 @@ export default function PaymentPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
           {paymentMethods.map((method) => (
             <PaymentMethodCard key={method.id} method={method} />
           ))}
