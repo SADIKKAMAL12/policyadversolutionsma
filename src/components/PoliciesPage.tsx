@@ -12,7 +12,7 @@ interface PoliciesPageProps {
 export default function PoliciesPage({ onAgree, language }: PoliciesPageProps) {
   const [selectedTabId, setSelectedTabId] = useState(policyTabs[0].id)
   const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false)
-  const contentRef = useRef<HTMLDivElement>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
   const sentinelRef = useRef<HTMLDivElement>(null)
   const [isDesktop, setIsDesktop] = useState<boolean>(() =>
     typeof window !== "undefined" ? window.matchMedia("(min-width: 640px)").matches : false,
@@ -30,7 +30,7 @@ export default function PoliciesPage({ onAgree, language }: PoliciesPageProps) {
   }, [])
 
   useEffect(() => {
-    const element = contentRef.current
+    const element = scrollContainerRef.current
     const sentinel = sentinelRef.current
     if (!element || !sentinel) return
 
@@ -56,7 +56,7 @@ export default function PoliciesPage({ onAgree, language }: PoliciesPageProps) {
   }, [selectedTabId, isDesktop])
 
   return (
-    <div className="space-y-6 p-6 lg:p-10">
+    <div ref={scrollContainerRef} className="space-y-6 p-6 lg:p-10">
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 p-8 text-white shadow-elevated">
         <div className="pointer-events-none absolute inset-0 opacity-60 blur-2xl">
           <div className="absolute -top-10 left-10 h-40 w-40 rounded-full bg-brand/30" />
@@ -112,7 +112,7 @@ export default function PoliciesPage({ onAgree, language }: PoliciesPageProps) {
           <div className="absolute bottom-10 right-10 h-40 w-40 rounded-full bg-brand/20" />
           <div className="absolute top-6 left-1/4 h-32 w-32 rounded-full bg-indigo-200/30 dark:bg-indigo-900/20" />
         </div>
-        <div ref={contentRef} className="relative min-h-[60vh] sm:max-h-[70vh] sm:overflow-y-auto">
+        <div className="relative min-h-[60vh] max-h-[80vh] overflow-y-auto">
           <div className="px-4 py-6 sm:px-8 sm:py-8">
             <div className="flex flex-col gap-6">
               <div>
