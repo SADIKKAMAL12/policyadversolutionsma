@@ -4,7 +4,7 @@ import PaymentMethodCard from "./PaymentMethodCard"
 import PaymentMethodModal from "./PaymentMethodModal"
 import { paymentMethods } from "../data/paymentMethods"
 import { translate, isRTL } from "../lib/i18n"
-import type { Language, PaymentMethod } from "../types"
+import type { Language } from "../types"
 
 interface PaymentPageProps {
   language: Language
@@ -17,7 +17,7 @@ export default function PaymentPage({ language, onBack }: PaymentPageProps) {
   }
   const rtl = isRTL(language)
   const backArrow = rtl ? "→" : "←"
-  const [activeMethod, setActiveMethod] = useState<PaymentMethod | null>(null)
+  const [activeMethodId, setActiveMethodId] = useState<string | null>(null)
 
   const badges = useMemo(
     () => [
@@ -88,8 +88,8 @@ export default function PaymentPage({ language, onBack }: PaymentPageProps) {
             key={method.id}
             method={method}
             language={language}
-            onOpen={setActiveMethod}
-            isHighlighted={activeMethod?.id === method.id}
+            onOpen={(item) => setActiveMethodId(item.id)}
+            isHighlighted={activeMethodId === method.id}
           />
         ))}
       </div>
@@ -117,9 +117,15 @@ export default function PaymentPage({ language, onBack }: PaymentPageProps) {
         </div>
       </div>
 
-      {activeMethod && (
-        <PaymentMethodModal method={activeMethod} language={language} onClose={() => setActiveMethod(null)} />
-      )}
+      {paymentMethods.map((method) => (
+        <PaymentMethodModal
+          key={method.id}
+          method={method}
+          language={language}
+          isOpen={activeMethodId === method.id}
+          onClose={() => setActiveMethodId(null)}
+        />
+      ))}
     </div>
   )
 }

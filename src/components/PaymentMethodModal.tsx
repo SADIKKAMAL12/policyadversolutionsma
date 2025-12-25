@@ -9,9 +9,10 @@ interface PaymentMethodModalProps {
   method: PaymentMethod
   language: Language
   onClose: () => void
+  isOpen: boolean
 }
 
-export default function PaymentMethodModal({ method, language, onClose }: PaymentMethodModalProps) {
+export default function PaymentMethodModal({ method, language, onClose, isOpen }: PaymentMethodModalProps) {
   const [copiedField, setCopiedField] = useState<string | null>(null)
   const [mounted, setMounted] = useState(false)
 
@@ -21,6 +22,10 @@ export default function PaymentMethodModal({ method, language, onClose }: Paymen
   }, [])
 
   useEffect(() => {
+    if (!isOpen) {
+      return
+    }
+
     const handleKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose()
@@ -29,11 +34,12 @@ export default function PaymentMethodModal({ method, language, onClose }: Paymen
     document.addEventListener("keydown", handleKey)
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
+
     return () => {
       document.removeEventListener("keydown", handleKey)
       document.body.style.overflow = previousOverflow
     }
-  }, [onClose])
+  }, [isOpen, onClose])
 
   const handleCopy = (value: string, label: string) => {
     navigator.clipboard.writeText(value)
@@ -53,7 +59,7 @@ export default function PaymentMethodModal({ method, language, onClose }: Paymen
     setTimeout(() => setCopiedField(null), 2000)
   }
 
-  if (!mounted) {
+  if (!mounted || !isOpen) {
     return null
   }
 

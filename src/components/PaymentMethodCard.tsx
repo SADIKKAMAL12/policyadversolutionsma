@@ -9,7 +9,14 @@ interface PaymentMethodCardProps {
   isHighlighted?: boolean
 }
 
+type DetailRow = PaymentMethod["details"][number] | null
+
 export default function PaymentMethodCard({ method, language, onOpen, isHighlighted }: PaymentMethodCardProps) {
+  const detailRows: DetailRow[] = [...method.details.slice(0, 2)]
+  while (detailRows.length < 2) {
+    detailRows.push(null)
+  }
+
   return (
     <div
       className={`relative rounded-2xl border border-slate-200/80 bg-gradient-to-b from-slate-900/3 to-white/95 p-6 shadow-lg shadow-slate-200/70 transition-all dark:border-slate-800/70 dark:from-slate-900/80 dark:to-slate-900/60 ${
@@ -29,17 +36,27 @@ export default function PaymentMethodCard({ method, language, onOpen, isHighligh
       </div>
 
       <div className="mt-4 grid gap-2 text-sm text-slate-600 dark:text-slate-300">
-        {method.details.slice(0, 2).map((detail, index) => (
-          <div
-            key={index}
-            className="flex items-center justify-between rounded-xl bg-white/80 px-3 py-2 shadow-inner dark:bg-slate-800/60"
-          >
-            <span className="font-semibold">{translate(detail.label, language)}</span>
-            <span className="max-w-[140px] truncate text-right font-mono text-xs text-slate-500 dark:text-slate-400">
-              {detail.value}
-            </span>
-          </div>
-        ))}
+        {detailRows.map((detail, index) =>
+          detail ? (
+            <div
+              key={`${detail.label}-${index}`}
+              className="flex items-center justify-between rounded-xl bg-white/80 px-3 py-2 shadow-inner dark:bg-slate-800/60"
+            >
+              <span className="font-semibold">{translate(detail.label, language)}</span>
+              <span className="max-w-[140px] truncate text-right font-mono text-xs text-slate-500 dark:text-slate-400">
+                {detail.value}
+              </span>
+            </div>
+          ) : (
+            <div
+              key={`placeholder-${index}`}
+              className="flex items-center justify-between rounded-xl bg-white/70 px-3 py-2 shadow-inner dark:bg-slate-800/50"
+            >
+              <span className="h-3 w-16 rounded-full bg-slate-200/80 dark:bg-slate-700/60" />
+              <span className="h-3 w-20 rounded-full bg-slate-100/80 dark:bg-slate-700/50" />
+            </div>
+          ),
+        )}
       </div>
 
       <button
