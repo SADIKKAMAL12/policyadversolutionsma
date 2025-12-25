@@ -6,10 +6,82 @@ import ThemeToggle from "./components/ThemeToggle"
 import type { Language, PageType } from "./types"
 import { translate, isRTL } from "./lib/i18n"
 
+type OrbConfig = {
+  id: string
+  className: string
+  animation: string
+  delay?: string
+}
+
 type ThemeMode = "light" | "dark"
 
 const THEME_KEY = "policy-portal-theme"
 const LANGUAGE_KEY = "policy-portal-language"
+
+const PRIMARY_ORBS: OrbConfig[] = [
+  {
+    id: "primary-1",
+    className: "-top-32 -right-24 h-80 w-80 rounded-full bg-brand/30 dark:bg-brand/20",
+    animation: "animate-[orbFloat_32s_ease-in-out_infinite]",
+    delay: "-4s",
+  },
+  {
+    id: "primary-2",
+    className: "top-10 left-[-120px] h-72 w-72 rounded-full bg-slate-200/30 dark:bg-slate-900/30",
+    animation: "animate-[orbFloatReverse_38s_ease-in-out_infinite]",
+    delay: "-12s",
+  },
+  {
+    id: "primary-3",
+    className: "bottom-28 left-1/3 h-48 w-48 rounded-full bg-indigo-200/25 dark:bg-indigo-900/20",
+    animation: "animate-[orbFloat_26s_ease-in-out_infinite]",
+    delay: "-2s",
+  },
+  {
+    id: "primary-4",
+    className: "-bottom-36 -left-10 h-96 w-96 rounded-full bg-sky-200/25 dark:bg-sky-900/25",
+    animation: "animate-[orbFloatReverse_44s_ease-in-out_infinite]",
+    delay: "-16s",
+  },
+  {
+    id: "primary-5",
+    className: "top-1/3 right-16 h-64 w-64 rounded-full bg-purple-200/20 dark:bg-purple-900/20",
+    animation: "animate-[orbFloat_34s_ease-in-out_infinite]",
+    delay: "-6s",
+  },
+  {
+    id: "primary-6",
+    className: "bottom-8 right-1/4 h-40 w-40 rounded-full bg-rose-200/20 dark:bg-rose-900/25",
+    animation: "animate-[orbFloatReverse_30s_ease-in-out_infinite]",
+    delay: "-18s",
+  },
+  {
+    id: "primary-7",
+    className: "top-12 left-1/2 h-36 w-36 rounded-full bg-amber-100/30 dark:bg-amber-900/20",
+    animation: "animate-[orbFloat_22s_ease-in-out_infinite]",
+  },
+]
+
+const SECONDARY_ORBS: OrbConfig[] = [
+  {
+    id: "secondary-1",
+    className: "top-1/2 left-10 h-40 w-40 rounded-full bg-fuchsia-200/30 dark:bg-fuchsia-900/25",
+    animation: "animate-[orbFloatReverse_28s_ease-in-out_infinite]",
+    delay: "-8s",
+  },
+  {
+    id: "secondary-2",
+    className: "bottom-16 left-1/2 h-48 w-48 rounded-full bg-cyan-200/25 dark:bg-cyan-900/25",
+    animation: "animate-[orbFloat_36s_ease-in-out_infinite]",
+    delay: "-20s",
+  },
+  {
+    id: "secondary-3",
+    className: "top-0 right-1/2 h-56 w-56 rounded-full bg-blue-200/20 dark:bg-blue-900/20",
+    animation: "animate-[orbFloatReverse_32s_ease-in-out_infinite]",
+    delay: "-14s",
+  },
+]
 
 const getPreferredTheme = (): ThemeMode => {
   if (typeof window === "undefined") {
@@ -74,22 +146,23 @@ function App() {
   )
 
   const stepProgress = currentPage === "policies" ? 0.5 : 1
+  const renderOrbs = (orbs: OrbConfig[]) =>
+    orbs.map((orb) => (
+      <div
+        key={orb.id}
+        className={`absolute ${orb.className} ${orb.animation}`}
+        style={orb.delay ? { animationDelay: orb.delay } : undefined}
+        aria-hidden
+      />
+    ))
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-      <div className="pointer-events-none absolute inset-0 opacity-70 blur-3xl">
-        <div className="absolute -top-32 -right-24 h-80 w-80 rounded-full bg-brand/30 dark:bg-brand/20" />
-        <div className="absolute top-10 left-[-120px] h-72 w-72 rounded-full bg-slate-200/30 dark:bg-slate-900/30" />
-        <div className="absolute bottom-28 left-1/3 h-48 w-48 rounded-full bg-indigo-200/25 dark:bg-indigo-900/20" />
-        <div className="absolute -bottom-36 -left-10 h-96 w-96 rounded-full bg-sky-200/25 dark:bg-sky-900/25" />
-        <div className="absolute top-1/3 right-16 h-64 w-64 rounded-full bg-purple-200/20 dark:bg-purple-900/20" />
-        <div className="absolute bottom-8 right-1/4 h-40 w-40 rounded-full bg-rose-200/20 dark:bg-rose-900/25" />
-        <div className="absolute top-12 left-1/2 h-36 w-36 rounded-full bg-amber-100/30 dark:bg-amber-900/20" />
+      <div className="pointer-events-none absolute inset-0 opacity-70 blur-3xl mix-blend-screen">
+        {renderOrbs(PRIMARY_ORBS)}
       </div>
-      <div className="pointer-events-none absolute inset-0 opacity-40 blur-[150px]">
-        <div className="absolute top-1/2 left-10 h-40 w-40 rounded-full bg-fuchsia-200/30 dark:bg-fuchsia-900/25" />
-        <div className="absolute bottom-16 left-1/2 h-48 w-48 rounded-full bg-cyan-200/25 dark:bg-cyan-900/25" />
-        <div className="absolute top-0 right-1/2 h-56 w-56 rounded-full bg-blue-200/20 dark:bg-blue-900/20" />
+      <div className="pointer-events-none absolute inset-0 opacity-50 blur-[150px] mix-blend-color-dodge">
+        {renderOrbs(SECONDARY_ORBS)}
       </div>
 
       <div className="relative mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 lg:px-0">
