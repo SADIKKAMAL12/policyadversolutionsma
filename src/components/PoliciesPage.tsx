@@ -112,7 +112,7 @@ export default function PoliciesPage({ onAgree, language }: PoliciesPageProps) {
           <div className="absolute bottom-10 right-10 h-40 w-40 rounded-full bg-brand/20" />
           <div className="absolute top-6 left-1/4 h-32 w-32 rounded-full bg-indigo-200/30 dark:bg-indigo-900/20" />
         </div>
-        <div className="relative min-h-[60vh] max-h-[80vh] overflow-y-auto">
+        <div className="relative min-h-[60vh] max-h-[80vh] overflow-y-scroll">
           <div className="px-4 py-6 sm:px-8 sm:py-8">
             <div className="flex flex-col gap-6">
               <div>
