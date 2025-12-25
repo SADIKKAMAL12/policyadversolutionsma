@@ -1,9 +1,9 @@
-import type { Language } from "../types"
+import type { Language, PaymentMethodContent } from "../types"
 import en from "../locales/en.json"
 import fr from "../locales/fr.json"
 import ar from "../locales/ar.json"
 
-type TranslationMap = Record<Language, Record<string, string>>
+type TranslationMap = Record<Language, Record<string, unknown>>
 
 const translations: TranslationMap = {
   en,
@@ -12,6 +12,7 @@ const translations: TranslationMap = {
 }
 
 const rtlLanguages: Language[] = ["ar"]
+const PAYMENT_DATA_KEY = "payment.data"
 
 export const supportedLanguages: { code: Language; label: string; emoji: string }[] = [
   { code: "en", label: "English", emoji: "🇺🇸" },
@@ -25,7 +26,7 @@ export function translate(text: string, language: Language): string {
   }
 
   const entry = translations[language][text]
-  if (entry) {
+  if (typeof entry === "string") {
     return entry
   }
 
@@ -34,7 +35,12 @@ export function translate(text: string, language: Language): string {
     return text
   }
 
-  return translations[language][trimmed] ?? text
+  const fallback = translations[language][trimmed]
+  if (typeof fallback === "string") {
+    return fallback
+  }
+
+  return text
 }
 
 export function getLanguageLabel(language: Language) {
@@ -43,4 +49,16 @@ export function getLanguageLabel(language: Language) {
 
 export function isRTL(language: Language) {
   return rtlLanguages.includes(language)
+}
+
+export function getPaymentMethodContent(language: Language): PaymentMethodContent[] {
+  const localized = translations[language][PAYMENT_DATA_KEY]
+  if (Array.isArray(localized)) {
+    return localized as PaymentMethodContent[]
+  }
+  const fallback = translations.en[PAYMENT_DATA_KEY]
+  if (Array.isArray(fallback)) {
+    return fallback as PaymentMethodContent[]
+  }
+  return []
 }

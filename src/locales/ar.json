@@ -110,5 +110,83 @@
   "• File is corrupted": "• الملف تالف",
   "• Service was not delivered properly": "• لم تُقدّم الخدمة بالشكل الصحيح",
   "CLIENT RESPONSIBILITY": "مسؤولية العميل",
-  "Any ban, closure, policy restriction, or compliance failure caused by user usage is not covered by us.": "أي حظر أو إغلاق أو تقييد أو مخالفة للامتثال ناتج عن استخدام العميل غير مشمول بضماننا."
+  "Any ban, closure, policy restriction, or compliance failure caused by user usage is not covered by us.": "أي حظر أو إغلاق أو تقييد أو مخالفة للامتثال ناتج عن استخدام العميل غير مشمول بضماننا.",
+  "payment.labels.accountHolder": "صاحب الحساب",
+  "payment.labels.rib": "RIB (رقم الحساب)",
+  "payment.labels.iban": "IBAN",
+  "payment.labels.swiftCode": "رمز SWIFT",
+  "payment.labels.email": "البريد الإلكتروني",
+  "payment.labels.id": "المعرف",
+  "payment.labels.userId": "معرف المستخدم",
+  "payment.labels.walletAddress": "عنوان المحفظة",
+  "payment.labels.network": "الشبكة",
+  "payment.labels.binanceId": "معرف Binance",
+  "payment.labels.paymentLink": "رابط الدفع",
+  "payment.methods.cihBank.name": "بنك CIH",
+  "payment.methods.payoneer.name": "بايونير",
+  "payment.methods.redotpay.name": "ريدوت باي",
+  "payment.methods.usdt.name": "USDT ‏(TRC20)",
+  "payment.methods.binance.name": "معرف Binance",
+  "payment.methods.wise.name": "وايز",
+  "payment.instructions.cihBank": "حوّل المبلغ المطلوب إلى الحساب أعلاه واحتفظ بالإيصال للتأكيد.",
+  "payment.instructions.payoneer": "أرسل الدفعة إلى البريد الإلكتروني أعلاه عبر حساب بايونير الخاص بك.",
+  "payment.instructions.redotpay": "استخدم معرف المستخدم أعلاه لإتمام الدفع عبر RedotPay.",
+  "payment.instructions.usdt": "أرسل عملة USDT إلى العنوان أعلاه باستخدام شبكة TRC20 فقط.",
+  "payment.instructions.binance": "استخدم معرف Binance أعلاه لمعالجة الدفع.",
+  "payment.instructions.wise": "انقر على رابط الدفع أعلاه لإكمال الدفع عبر Wise. ستتم إعادة توجيهك إلى صفحة Wise الآمنة.",
+  "payment.data": [
+    {
+      "id": "cih-bank",
+      "name": "بنك CIH",
+      "instructions": "حوّل المبلغ المطلوب إلى الحساب أعلاه واحتفظ بالإيصال للتأكيد.",
+      "details": [
+        { "label": "صاحب الحساب", "value": "KAMAL SADIK", "copyable": true },
+        { "label": "RIB (رقم الحساب)", "value": "230 780 2748742211002900 76", "copyable": true },
+        { "label": "IBAN", "value": "MA64 2307 8027 4874 2211 0029 0076", "copyable": true },
+        { "label": "رمز SWIFT", "value": "CIHMMAMC", "copyable": true }
+      ]
+    },
+    {
+      "id": "payoneer",
+      "name": "بايونير",
+      "instructions": "أرسل الدفعة إلى البريد الإلكتروني أعلاه عبر حساب بايونير الخاص بك.",
+      "details": [
+        { "label": "البريد الإلكتروني", "value": "Sadikkamal299@gmail.com", "copyable": true },
+        { "label": "المعرف", "value": "74984035", "copyable": true }
+      ]
+    },
+    {
+      "id": "redotpay",
+      "name": "ريدوت باي",
+      "instructions": "استخدم معرف المستخدم أعلاه لإتمام الدفع عبر RedotPay.",
+      "details": [{ "label": "معرف المستخدم", "value": "1097116046", "copyable": true }]
+    },
+    {
+      "id": "usdt-trc20",
+      "name": "USDT ‏(TRC20)",
+      "instructions": "أرسل عملة USDT إلى العنوان أعلاه باستخدام شبكة TRC20 فقط.",
+      "details": [
+        { "label": "عنوان المحفظة", "value": "THCY7VUs4F7gYQmQ1N44dRXgVYQr4DkiLF", "copyable": true },
+        { "label": "الشبكة", "value": "TRC20 (Tron)" }
+      ]
+    },
+    {
+      "id": "binance-id",
+      "name": "معرف Binance",
+      "instructions": "استخدم معرف Binance أعلاه لمعالجة الدفع.",
+      "details": [{ "label": "معرف Binance", "value": "74251224", "copyable": true }]
+    },
+    {
+      "id": "wise",
+      "name": "وايز",
+      "instructions": "انقر على رابط الدفع أعلاه لإكمال الدفع عبر Wise. ستتم إعادة توجيهك إلى صفحة Wise الآمنة.",
+      "details": [
+        {
+          "label": "رابط الدفع",
+          "value": "https://wise.com/pay/business/adversolutionsllc",
+          "copyable": true
+        }
+      ]
+    }
+  ]
 }

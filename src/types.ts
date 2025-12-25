@@ -1,13 +1,20 @@
-export interface PaymentMethod {
+export type Language = "en" | "fr" | "ar"
+
+export interface PaymentMethodDetail {
+  label: string
+  value: string
+  copyable?: boolean
+}
+
+export interface PaymentMethodContent {
   id: string
   name: string
-  logo: string
-  details: {
-    label: string
-    value: string
-    copyable?: boolean
-  }[]
+  details: PaymentMethodDetail[]
   instructions?: string
+}
+
+export interface PaymentMethod extends PaymentMethodContent {
+  logo: string
 }
 
 export interface PolicyTab {
@@ -23,5 +30,3 @@ export interface PolicySection {
 }
 
 export type PageType = "policies" | "payment"
-
-export type Language = "en" | "fr" | "ar"

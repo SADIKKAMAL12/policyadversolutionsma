@@ -110,5 +110,83 @@
   "• File is corrupted": "• Le fichier est corrompu",
   "• Service was not delivered properly": "• Le service n'a pas été livré correctement",
   "CLIENT RESPONSIBILITY": "RESPONSABILITÉ DU CLIENT",
-  "Any ban, closure, policy restriction, or compliance failure caused by user usage is not covered by us.": "Tout bannissement, fermeture, restriction ou problème de conformité causé par l'utilisation du client n'est pas couvert."
+  "Any ban, closure, policy restriction, or compliance failure caused by user usage is not covered by us.": "Tout bannissement, fermeture, restriction ou problème de conformité causé par l'utilisation du client n'est pas couvert.",
+  "payment.labels.accountHolder": "Titulaire du compte",
+  "payment.labels.rib": "RIB",
+  "payment.labels.iban": "IBAN",
+  "payment.labels.swiftCode": "Code SWIFT",
+  "payment.labels.email": "Email",
+  "payment.labels.id": "ID",
+  "payment.labels.userId": "Identifiant utilisateur",
+  "payment.labels.walletAddress": "Adresse du portefeuille",
+  "payment.labels.network": "Réseau",
+  "payment.labels.binanceId": "Identifiant Binance",
+  "payment.labels.paymentLink": "Lien de paiement",
+  "payment.methods.cihBank.name": "CIH Bank",
+  "payment.methods.payoneer.name": "Payoneer",
+  "payment.methods.redotpay.name": "RedotPay",
+  "payment.methods.usdt.name": "USDT (TRC20)",
+  "payment.methods.binance.name": "Identifiant Binance",
+  "payment.methods.wise.name": "Wise",
+  "payment.instructions.cihBank": "Transférez le montant exact sur le compte ci-dessus. Conservez votre reçu pour confirmation.",
+  "payment.instructions.payoneer": "Envoyez le paiement à l'adresse e-mail ci-dessus via votre compte Payoneer.",
+  "payment.instructions.redotpay": "Utilisez l'identifiant utilisateur ci-dessus pour finaliser votre paiement via RedotPay.",
+  "payment.instructions.usdt": "Envoyez des USDT à l'adresse ci-dessus en utilisant uniquement le réseau TRC20.",
+  "payment.instructions.binance": "Utilisez l'identifiant Binance ci-dessus pour traiter le paiement.",
+  "payment.instructions.wise": "Cliquez sur le lien de paiement ci-dessus pour finaliser votre paiement via Wise. Vous serez redirigé vers la page sécurisée de Wise.",
+  "payment.data": [
+    {
+      "id": "cih-bank",
+      "name": "CIH Bank",
+      "instructions": "Transférez le montant exact sur le compte ci-dessus. Conservez votre reçu pour confirmation.",
+      "details": [
+        { "label": "Titulaire du compte", "value": "KAMAL SADIK", "copyable": true },
+        { "label": "RIB", "value": "230 780 2748742211002900 76", "copyable": true },
+        { "label": "IBAN", "value": "MA64 2307 8027 4874 2211 0029 0076", "copyable": true },
+        { "label": "Code SWIFT", "value": "CIHMMAMC", "copyable": true }
+      ]
+    },
+    {
+      "id": "payoneer",
+      "name": "Payoneer",
+      "instructions": "Envoyez le paiement à l'adresse e-mail ci-dessus via votre compte Payoneer.",
+      "details": [
+        { "label": "Email", "value": "Sadikkamal299@gmail.com", "copyable": true },
+        { "label": "ID", "value": "74984035", "copyable": true }
+      ]
+    },
+    {
+      "id": "redotpay",
+      "name": "RedotPay",
+      "instructions": "Utilisez l'identifiant utilisateur ci-dessus pour finaliser votre paiement via RedotPay.",
+      "details": [{ "label": "Identifiant utilisateur", "value": "1097116046", "copyable": true }]
+    },
+    {
+      "id": "usdt-trc20",
+      "name": "USDT (TRC20)",
+      "instructions": "Envoyez des USDT à l'adresse ci-dessus en utilisant uniquement le réseau TRC20.",
+      "details": [
+        { "label": "Adresse du portefeuille", "value": "THCY7VUs4F7gYQmQ1N44dRXgVYQr4DkiLF", "copyable": true },
+        { "label": "Réseau", "value": "TRC20 (Tron)" }
+      ]
+    },
+    {
+      "id": "binance-id",
+      "name": "Identifiant Binance",
+      "instructions": "Utilisez l'identifiant Binance ci-dessus pour traiter le paiement.",
+      "details": [{ "label": "Identifiant Binance", "value": "74251224", "copyable": true }]
+    },
+    {
+      "id": "wise",
+      "name": "Wise",
+      "instructions": "Cliquez sur le lien de paiement ci-dessus pour finaliser votre paiement via Wise. Vous serez redirigé vers la page sécurisée de Wise.",
+      "details": [
+        {
+          "label": "Lien de paiement",
+          "value": "https://wise.com/pay/business/adversolutionsllc",
+          "copyable": true
+        }
+      ]
+    }
+  ]
 }

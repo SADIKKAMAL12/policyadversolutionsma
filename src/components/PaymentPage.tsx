@@ -2,9 +2,24 @@ import { useMemo, useState } from "react"
 import { MessageCircle, Phone, ShieldCheck, Clock } from "lucide-react"
 import PaymentMethodCard from "./PaymentMethodCard"
 import PaymentMethodModal from "./PaymentMethodModal"
-import { paymentMethods } from "../data/paymentMethods"
-import { translate, isRTL } from "../lib/i18n"
-import type { Language } from "../types"
+import { translate, isRTL, getPaymentMethodContent } from "../lib/i18n"
+import type { Language, PaymentMethod } from "../types"
+import binanceLogo from "../assets/logos/binance-logo.jpeg"
+import cihLogo from "../assets/logos/cih-logo.png"
+import payoneerLogo from "../assets/logos/payoneer-logo.jpeg"
+import redotpayLogo from "../assets/logos/redotpay-logo.png"
+import usdtLogo from "../assets/logos/usdt-logo.jpg"
+import wiseLogo from "../assets/logos/wise-logo.png"
+import placeholderLogo from "../assets/logos/placeholder.svg"
+
+const paymentMethodLogos: Record<string, string> = {
+  "cih-bank": cihLogo,
+  "payoneer": payoneerLogo,
+  "redotpay": redotpayLogo,
+  "usdt-trc20": usdtLogo,
+  "binance-id": binanceLogo,
+  "wise": wiseLogo,
+}
 
 interface PaymentPageProps {
   language: Language
@@ -18,6 +33,14 @@ export default function PaymentPage({ language, onBack }: PaymentPageProps) {
   const rtl = isRTL(language)
   const backArrow = rtl ? "→" : "←"
   const [activeMethodId, setActiveMethodId] = useState<string | null>(null)
+
+  const paymentMethods = useMemo<PaymentMethod[]>(() => {
+    const localizedMethods = getPaymentMethodContent(language)
+    return localizedMethods.map((method) => ({
+      ...method,
+      logo: paymentMethodLogos[method.id] ?? placeholderLogo,
+    }))
+  }, [language])
 
   const badges = useMemo(
     () => [

@@ -41,17 +41,17 @@ export default function PaymentMethodModal({ method, language, onClose, isOpen }
     }
   }, [isOpen, onClose])
 
-  const handleCopy = (value: string, label: string) => {
+  const handleCopy = (value: string, fieldKey: string) => {
     navigator.clipboard.writeText(value)
-    setCopiedField(label)
+    setCopiedField(fieldKey)
     setTimeout(() => setCopiedField(null), 2000)
   }
 
   const copyAllDetails = () => {
-    const allDetails = method.details.map((detail) => `${translate(detail.label, language)}: ${detail.value}`).join("\n")
-    const translatedInstructions = method.instructions ? translate(method.instructions, language) : ""
+    const allDetails = method.details.map((detail) => `${detail.label}: ${detail.value}`).join("\n")
+    const fullInstructions = method.instructions ?? ""
     const fullText = `${method.name}\n${"-".repeat(method.name.length)}\n${allDetails}${
-      translatedInstructions ? `\n\n${translatedInstructions}` : ""
+      fullInstructions ? `\n\n${fullInstructions}` : ""
     }`
 
     navigator.clipboard.writeText(fullText)
@@ -89,36 +89,33 @@ export default function PaymentMethodModal({ method, language, onClose, isOpen }
             </div>
             {method.instructions && (
               <div className="rounded-2xl bg-gradient-to-br from-slate-900/5 to-white/5 p-4 text-sm text-slate-700 shadow-inner dark:from-slate-800 dark:to-slate-800/70 dark:text-slate-200">
-                {translate(method.instructions, language)}
+                {method.instructions}
               </div>
             )}
           </div>
           <div className="space-y-4">
-            {method.details.map((detail, index) => {
-              const label = translate(detail.label, language)
-              return (
-                <div key={index} className="rounded-2xl border border-slate-200/80 p-4 dark:border-slate-700/70">
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
-                    {label}
-                  </p>
-                  <div className="mt-2 flex items-center gap-2">
-                    <div className="flex-1 break-all rounded-xl bg-slate-50 px-3 py-2 font-mono text-sm text-slate-900 dark:bg-slate-900/60 dark:text-slate-100">
-                      {detail.value}
-                    </div>
-                    {detail.copyable && (
-                      <button
-                        type="button"
-                        onClick={() => handleCopy(detail.value, detail.label)}
-                        className="rounded-xl bg-slate-900 p-3 text-white hover:bg-slate-700 dark:bg-slate-700 dark:hover:bg-slate-600"
-                        aria-label={translate("Copy", language)}
-                      >
-                        {copiedField === detail.label ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
-                      </button>
-                    )}
+            {method.details.map((detail, index) => (
+              <div key={`${method.id}-${index}`} className="rounded-2xl border border-slate-200/80 p-4 dark:border-slate-700/70">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
+                  {detail.label}
+                </p>
+                <div className="mt-2 flex items-center gap-2">
+                  <div className="flex-1 break-all rounded-xl bg-slate-50 px-3 py-2 font-mono text-sm text-slate-900 dark:bg-slate-900/60 dark:text-slate-100">
+                    {detail.value}
                   </div>
+                  {detail.copyable && (
+                    <button
+                      type="button"
+                      onClick={() => handleCopy(detail.value, `${method.id}-${index}`)}
+                      className="rounded-xl bg-slate-900 p-3 text-white hover:bg-slate-700 dark:bg-slate-700 dark:hover:bg-slate-600"
+                      aria-label={translate("Copy", language)}
+                    >
+                      {copiedField === `${method.id}-${index}` ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
+                    </button>
+                  )}
                 </div>
-              )
-            })}
+              </div>
+            ))}
           </div>
         </div>
         <div className="border-t border-slate-100/50 bg-slate-50/70 px-8 py-6 dark:border-slate-800 dark:bg-slate-900/60">
