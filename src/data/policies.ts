@@ -148,6 +148,7 @@ export const policyTabs: PolicyTab[] = [
           '• Access provided is wrong',
           '• File is corrupted',
           '• Service was not delivered properly',
+          '• Service was not delivered properly',
         ],
       },
       {
