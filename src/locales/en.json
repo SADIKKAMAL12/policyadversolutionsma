@@ -146,6 +146,17 @@
         { "label": "IBAN", "value": "MA64 2307 8027 4874 2211 0029 0076", "copyable": true },
         { "label": "SWIFT Code", "value": "CIHMMAMC", "copyable": true }
       ]
+    },{
+      "id": "usdt-logo",
+      "name": "CIH Bank",
+      "instructions": "Transfer the exact amount to the account above. Keep your receipt for confirmation.",
+      "details": [
+        { "label": "Account Holder", "value": "KAMAL SADIK", "copyable": true },
+        { "label": "RIB", "value": "230 780 2748742211002900 76", "copyable": true },
+        { "label": "Account Number ", "value": "2748742211002900", "copyable": true },
+        { "label": "IBAN", "value": "MA64 2307 8027 4874 2211 0029 0076", "copyable": true },
+        { "label": "SWIFT Code", "value": "CIHMMAMC", "copyable": true }
+      ]
     },
     {
       "id": "payoneer",
