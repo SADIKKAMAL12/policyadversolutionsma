@@ -142,6 +142,7 @@
       "details": [
         { "label": "صاحب الحساب", "value": "KAMAL SADIK", "copyable": true },
         { "label": "RIB (رقم الحساب)", "value": "230 780 2748742211002900 76", "copyable": true },
+          { "label": "N° de compte (رقم الحساب)", "value": "2748742211002900", "copyable": true },
         { "label": "IBAN", "value": "MA64 2307 8027 4874 2211 0029 0076", "copyable": true },
         { "label": "رمز SWIFT", "value": "CIHMMAMC", "copyable": true }
       ]
