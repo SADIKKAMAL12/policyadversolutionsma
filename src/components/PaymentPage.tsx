@@ -8,7 +8,7 @@ import binanceLogo from "../assets/logos/binance-logo.jpeg"
 import cihLogo from "../assets/logos/cih-logo.png"
 import payoneerLogo from "../assets/logos/payoneer-logo.jpeg"
 import redotpayLogo from "../assets/logos/redotpay-logo.png"
-import usdtLogo from "../assets/logos/usdt-logo.jpg"
+import usdtLogo from "../assets/logos/usdt-logo.jpeg"
 import wiseLogo from "../assets/logos/wise-logo.png"
 import placeholderLogo from "../assets/logos/placeholder.svg"
 
